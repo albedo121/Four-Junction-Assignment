@@ -1,6 +1,5 @@
-//ASSIGNMENT TASK FROM FOUR JUNCTIONS
+//BASIC CRAWLING FOR CROMA.COM- Open home page--> Search for latops--> Extract product name, price, url and display in console
 
-const { log } = require('console');
 const {Builder, By, Key, Browser, until, Select} = require('selenium-webdriver');
 const { elementLocated } = require('selenium-webdriver/lib/until');
 require('chromedriver'); //For Chrome browser
@@ -30,34 +29,28 @@ try {
 
     const product_titles = await driver.findElements(By.xpath("//*[@class='plp-prod-title-rating-cont']"));
     const product_cost = await driver.findElements(By.xpath("//span[@class='amount plp-srp-new-amount']"));
-    //const product_rating = await driver.findElements(By.xpath("//span[@class='rating-text']"));
     const product_link = await driver.findElements(By.xpath("//*[@class='product-title plp-prod-title 999']/a"));
 
+    //Looping through all the accquired product details
     for (let i = 0; i < product_titles.length; i++) {
+        //Extract text
         const product_title_text = await product_titles[i].getText();
         const product_cost_text = await product_cost[i].getText();
-
-    // Default value for the rating in case it doesn't exist for this product
-    //let product_rating_text = "No Rating"; 
-
-    // Safely get the product rating if it exists
-    // if (i < product_rating.length) {
-    //     product_rating_text = await product_rating[i].getText();
-    // }
-
-
         const url = await product_link[i].getAttribute('href')
+
+        //Output product details
         console.log('PRODUCT NAME: ',product_title_text);
         console.log('COST: ', product_cost_text);
-        //console.log('RATING: ', product_rating_text);
         console.log('URL: ', url)
         console.log('--------------------')
     }
+
+
 } catch (error) {
     console.log('AN ERROR OCCURRED...')
     console.log(error)
 } finally{
-    //driver.quit()
+    //driver.quit()             //Commenting this line to keep browser open to verify output.
 }
 
 }) ()

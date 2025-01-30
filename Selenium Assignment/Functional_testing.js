@@ -76,7 +76,7 @@ try {
         console.log('IMAGE FUNCTIONALITY-')
         for (let [index, link] of imageLinks.entries()) {
             console.log(`${index + 1}. ${link}`);
-        
+            //Hitting all links to make sure its loading (checking for HTTP 200 status code)
             try {
             let response = await fetch(link);
             if (response.status === 200) {
