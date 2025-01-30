@@ -1,3 +1,4 @@
+//IMPORT THE FUNCTIONS FROM 'functions.js'
 const tests = require('./functions')
 
 //TEST FOR FUNCTION 1- calculateDiscount()
@@ -278,5 +279,17 @@ describe('TESTS FOR validateEmail function', () => {
     const email = '';
     expect(tests.validateEmail(email)).toBe(false);
   });
+
+});
+
+//TEST FOR FUNCTION 5- API MOCK
+describe('TESTS FOR validateEmail function', () => {
+
+  // Mock api
+  test('Mocking an api', () => {
+    const email = 'test@example.com';
+    expect(tests.validateEmail(email)).toBe(true);
+  });
+
 
 });
